@@ -1,0 +1,23 @@
+{
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRegex": ".e2e-spec.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "@app/common/(.*)": "<rootDir>/../libs/common/src/$1",
+    "@app/common": "<rootDir>/../libs/common/src",
+    "@app/pay-link-client/(.*)": "<rootDir>/../libs/pay-link-client/src/$1",
+    "@app/pay-link-client": "<rootDir>/../libs/pay-link-client/src",
+    "@app/post-transaction-client/(.*)": "<rootDir>/../libs/post-transaction-client/src/$1",
+    "@app/post-transaction-client": "<rootDir>/../libs/post-transaction-client/src",
+    "@app/notification-client/(.*)": "<rootDir>/../libs/notification-client/src/$1",
+    "@app/notification-client": "<rootDir>/../libs/notification-client/src"
+  }
+}

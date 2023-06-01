@@ -1,0 +1,12 @@
+# Інструменти для локальної розробки
+services:
+  payment-db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: admin
+      POSTGRES_DB: payment
+    volumes:
+      - ./db-scripts:/docker-entrypoint-initdb.d
+    ports:
+      - 5445:5432
