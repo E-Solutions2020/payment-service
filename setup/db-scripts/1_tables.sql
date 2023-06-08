@@ -15,6 +15,8 @@ CREATE TABLE public.auth_client_details (
 COMMENT ON COLUMN public.auth_client_details.auth_client_id IS 'Унікальний ідентифікатор клієнта';
 COMMENT ON COLUMN public.auth_client_details.url IS 'Посилання на WEB ресурс кліента';
 
+INSERT INTO public.auth_client_details (auth_client_id, url) VALUES('k_yMORUwMIMM5tufKTXKa', 'https://court.gov.ua/');
+
 
 -- public.fees definition
 
@@ -34,6 +36,9 @@ CREATE TABLE public.fees (
 	CONSTRAINT fees_pk PRIMARY KEY (fee_id)
 );
 CREATE INDEX fees_payment_code_idx ON public.fees USING btree (payment_code);
+
+insert into public.fees (payment_code,fee_percent,min_sum,description)
+values('101',2.0,5.00,'court fee');
 
 -- Column comments
 
