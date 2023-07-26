@@ -119,7 +119,7 @@ export class NotificationJobService implements OnApplicationBootstrap {
       notifyAttempts: payment.notifyAttempts + 1,
     }
     
-    if (!updateData.notifyStartAt) {
+    if (!payment.notifyStartAt) {
       updateData.notifyStartAt = new Date()
     }
     

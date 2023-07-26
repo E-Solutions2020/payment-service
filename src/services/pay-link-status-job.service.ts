@@ -168,7 +168,7 @@ export class PayLinkStatusJobService implements OnApplicationBootstrap {
       updateData.notifyRetryAt = null
       updateData.statusUpdateAttempts = 0
     } else {
-      if (!updateData.statusUpdateStartAt) {
+      if (!payment.statusUpdateStartAt) {
         updateData.statusUpdateStartAt = new Date()
       }
       updateData.statusUpdateAttempts = payment.statusUpdateAttempts + 1

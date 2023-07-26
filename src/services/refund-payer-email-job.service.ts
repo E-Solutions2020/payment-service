@@ -75,7 +75,7 @@ export class RefundPayerEmailJobService implements OnApplicationBootstrap {
       payerNotifyAttempts: refundOrder.payerNotifyAttempts + 1,
     }
     
-    if (!updateData.payerNotifyStartAt) {
+    if (!refundOrder.payerNotifyStartAt) {
       updateData.payerNotifyStartAt = new Date()
     }
     
