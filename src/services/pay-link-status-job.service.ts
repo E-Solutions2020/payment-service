@@ -130,8 +130,9 @@ export class PayLinkStatusJobService implements OnApplicationBootstrap {
   
       throw err
     }
-    
-    const status = state.resultCode != null ? Number(state.resultCode) : null
+
+    const { resultCode } = state
+    const status = (resultCode == null || resultCode === '') ? null : Number(state.resultCode)
     const isFinished = FINISHED_PAY_LINK_STATUSES.includes(status)
     const isPending = PENDING_PAY_LINK_STATUSES.includes(status)
     const isExpired = isPending && new Date().getTime() > payment.createDate.getTime() + this.config.payLinkService.sessionExpirationSeconds * 1000
