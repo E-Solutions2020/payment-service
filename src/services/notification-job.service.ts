@@ -19,7 +19,6 @@ export class NotificationJobService implements OnApplicationBootstrap {
   private authClient: Client
   private authTokenSet: TokenSet
   private subjects: Map<Payment['id'], { subject: Subject<Payment>, count: number }> = new Map()
-  private activeNotifications: Set<Payment['id']> = new Set()
 
   constructor(private readonly paymentRepo: PaymentRepo,
               private readonly config: ConfigService,
@@ -96,15 +95,9 @@ export class NotificationJobService implements OnApplicationBootstrap {
 
   async sendNotification(payment: Payment): Promise<void> {
     try {
-      if (this.activeNotifications.has(payment.id)) {
-        return
-      }
-      this.activeNotifications.add(payment.id)
       await this._sendNotification(payment)
     } catch (err) {
       this.logger.error(`Error sending payment ${payment.id} notification`, err)
-    } finally {
-      this.activeNotifications.delete(payment.id)
     }
   }
 

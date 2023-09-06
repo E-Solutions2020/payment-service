@@ -31,7 +31,7 @@ export default Joi.object({
   AUTH_SERVICE_URL: Joi.string().uri({ scheme: ['http', 'https'] }).required(),
   AUTH_CLIENT_ID: Joi.string().required(),
   AUTH_CLIENT_SECRET: Joi.string().required(),
-  NOTIFICATION_MIN_INTERVAL_SECONDS: Joi.number().integer().min(1).default(10),
+  NOTIFICATION_MIN_INTERVAL_SECONDS: Joi.number().integer().min(1).default(5),
   NOTIFICATION_MAX_INTERVAL_SECONDS: Joi.number().integer().min(Joi.ref('NOTIFICATION_MIN_INTERVAL_SECONDS')).default(60 * 60 * 24),
   NOTIFICATION_CONCURRENCY: Joi.number().integer().min(1).default(5),
   NOTIFICATION_GIVE_UP_AFTER_DAYS: Joi.number().integer().min(1).default(30),

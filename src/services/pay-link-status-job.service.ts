@@ -12,7 +12,6 @@ import {
 } from '@app/pay-link-client'
 import { Observable, Subject } from 'rxjs'
 import { createErrorMessage } from './utils'
-import { NotificationJobService } from './notification-job.service'
 
 @Injectable()
 export class PayLinkStatusJobService implements OnApplicationBootstrap {
@@ -24,8 +23,7 @@ export class PayLinkStatusJobService implements OnApplicationBootstrap {
               private readonly config: ConfigService,
               private readonly payLinkClient: PayLinkClient,
               private readonly schedulerRegistry: SchedulerRegistry,
-              private readonly panErrorRepo: PanErrorRepo,
-              private readonly notificationJobService: NotificationJobService) {
+              private readonly panErrorRepo: PanErrorRepo) {
   }
 
   private async updatePaymentStatuses(): Promise<void> {
@@ -108,9 +106,6 @@ export class PayLinkStatusJobService implements OnApplicationBootstrap {
   
       if (payment.isFailed || payment.isFinished) {
         this.notifySubscribers(payment)
-        if (payment.notifyUrl) {
-          await this.notificationJobService.sendNotification(payment)
-        }
       }
     }
     

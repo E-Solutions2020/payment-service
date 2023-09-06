@@ -10,8 +10,7 @@ import { MailService } from '../mail/mail.service'
 export class RefundPayerEmailJobService implements OnApplicationBootstrap {
   private readonly logger = new Logger(RefundPayerEmailJobService.name)
   private isJobRunning = false
-  private activeNotifications: Set<RefundOrder['id']> = new Set()
-  
+
   constructor(private readonly refundOrderRepo: RefundOrderRepo,
               private readonly config: ConfigService,
               private readonly schedulerRegistry: SchedulerRegistry,
@@ -54,15 +53,9 @@ export class RefundPayerEmailJobService implements OnApplicationBootstrap {
   
   async sendPayerEmail(payment: RefundOrder): Promise<void> {
     try {
-      if (this.activeNotifications.has(payment.id)) {
-        return
-      }
-      this.activeNotifications.add(payment.id)
       await this._sendPayerEmail(payment)
     } catch (err) {
       this.logger.error(`Error sending payment ${payment.id} notification`, err)
-    } finally {
-      this.activeNotifications.delete(payment.id)
     }
   }
   
